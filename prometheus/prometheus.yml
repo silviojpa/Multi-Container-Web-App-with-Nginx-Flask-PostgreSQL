@@ -1,0 +1,7 @@
+global:
+  scrape_interval: 5s # De quanto em quanto tempo o Prometheus coleta as métricas
+
+scrape_configs:
+  - job_name: 'flask-app-metrics'
+    static_configs:
+      - targets: ['web-app:5000'] # Aponta para o container do Flask na nossa rede Docker

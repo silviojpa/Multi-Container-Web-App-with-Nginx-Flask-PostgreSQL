@@ -13,11 +13,13 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
     networks:
-      - app-net
+      - lab-net
 
   web-app:
     build: ./app
     container_name: flask_web_app
+    ports:
+      - "5000:5000"
     environment:
       - DB_HOST=db
       - DB_NAME=usuarios_db
@@ -26,7 +28,7 @@ services:
     depends_on:
       - db
     networks:
-      - app-net
+      - lab-net
 
   nginx:
     image: nginx:latest
@@ -34,15 +36,38 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/default.conf
     depends_on:
       - web-app
     networks:
-      - app-net
+      - lab-net
+
+  # NOVO: Prometheus para coleta de métricas
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus_server
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - lab-net
+
+  # NOVO: Grafana para visualização em Dashboards
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana_dashboard
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    networks:
+      - lab-net
 
 volumes:
   pgdata:
 
 networks:
-  app-net:
+  lab-net:
     driver: bridge
