@@ -1,0 +1,39 @@
+name: CI Lab Web DB
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  docker-compose-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout do Código
+        uses: actions/checkout@v4
+
+      - name: Configurar Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Subir containers com Docker Compose
+        run: |
+          docker compose up -d --build
+
+      - name: Verificar Status dos Containers e Logs
+        run: |
+          docker ps
+          docker logs flask_web_app
+
+      - name: Testar Conectividade e Resposta HTTP (Smoke Test)
+        run: |
+          # Aguardar alguns segundos para a inicialização completa
+          sleep 5
+          # Testar se o Nginx na porta 80 está respondendo com HTTP 200 OK
+          curl -I http://localhost:80
+
+      - name: Derrubar ambiente e limpar volumes
+        if: always()
+        run: |
+          docker compose down -v
