@@ -1,0 +1,24 @@
+# Python / Ambiente Virtual
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+env/
+venv/
+ENV/
+build/
+dist/
+*.egg-info/
+
+# Docker / Volumes locais de dados (Crucial para não subir dados do banco)
+pgdata/
+prometheus_data/
+grafana_data/
+
+# Logs e arquivos temporários do sistema
+*.log
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
