@@ -44,9 +44,9 @@ docker compose up -d --build
 ````
 
 ## Passo 4: Visualizar no Grafana
-1- Volte ao seu painel do Grafana (http://localhost:3000).
-2- Crie um New panel.
-3- Selecione a fonte de dados do Prometheus.
+1 Volte ao seu painel do Grafana (http://localhost:3000).
+2 Crie um New panel.
+3 Selecione a fonte de dados do Prometheus.
 * Teste uma query de uso de memória dos containers usando o cAdvisor, por exemplo:
 
 ````Snippet de código
