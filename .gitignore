@@ -1,0 +1,59 @@
+# Python / Ambiente Virtual
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Arquivo exclusivo 
+!add_SonarQube_v3.md
+
+# Docker / Volumes locais de dados (Crucial para não subir dados do banco)
+pgdata/
+prometheus_data/
+grafana_data/
+
+# Virtual Environments
+
+venv/
+.venv/
+ENV/
+
+# IDE / Editor Configs
+
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# SonarQube / Sonar Scanner
+
+.scannerwork/
+sonar-scanner-*/
+*.zip
+
+# Logs & Databases
+
+*.log
+*.sqlite3
+
+# OS generated files
+
+.DS_Store
+Thumbs.db

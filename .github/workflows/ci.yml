@@ -29,7 +29,7 @@ jobs:
       - name: Testar Conectividade e Resposta HTTP (Smoke Test)
         run: |
           # Aguardar alguns segundos para a inicialização completa
-          sleep 5
+          sleep 6
           # Testar se o Nginx na porta 80 está respondendo com HTTP 200 OK
           curl -I http://127.0.0.1:8080
 
