@@ -1,4 +1,3 @@
-version: '3.8'
 
 services:
   # ---------------------------------------------------------
@@ -17,7 +16,7 @@ services:
       - lab-net
 
   web-app:
-    build: .
+    build: ./app
     container_name: flask_web_app
     ports:
       - "5000:5000"
